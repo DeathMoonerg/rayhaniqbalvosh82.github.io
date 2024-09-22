@@ -4,7 +4,7 @@ const form = document.getElementById('contact-form');
         const nama = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const pesan = document.getElementById('message').value;
-        const apikey = 'YOUR_API_KEY_HERE'; // API key
+        const apikey = 'https://formspree.io/f/xgvwjlnl'; // API key
         const url = `https://formspree.io/api/v1/forms/${apikey}/submissions`;
 
         fetch(url, {
