@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DETH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href="images_icon/logo.ico" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Courier', monospace;
+            background-color: #333;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #222;
+            /* tambahkan properti ini */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            /* tambahkan properti ini */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* tambahkan properti ini */
+        }
+
+        html {
+            scroll-behavior: smooth;
+            /* tambahkan properti ini */
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.active {
+            background-color: #f2f2f2;
+            /* Add a background color for the active state */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* Add a box shadow for the active state */
+            animation: navbar-active 0.3s ease;
+            /* Add an animation to the active state */
+        }
+
+        @keyframes navbar-active {
+            0% {
+                transform: translateY(-10px);
+                /* Start with a slight upward movement */
+                opacity: 0.5;
+                /* Add a fade-in effect */
+            }
+
+            100% {
+                transform: translateY(0);
+                /* End with the navbar in its original position */
+                opacity: 1;
+                /* Fully opaque */
+            }
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f2f2f2;
+        }
+
+        nav a.active {
+            color: #f2f2f2;
+            border-bottom: 2px solid #f2f2f2;
+        }
+
+        nav li {
+            margin-right: 20px;
+            position: relative;
+        }
+
+        nav li::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #f2f2f2;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        nav li:hover::after {
+            transform: scaleX(1);
+        }
+
+        nav li.active::after {
+            transform: scaleX(1);
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .hero-heading {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-text {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #f2f2f2;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        /* Video Section */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 110%;
+            object-fit: cover;
+            opacity: 0.4;
+            /* Transparansi video */
+            z-index: -1;
+            /* Atur z-index agar video berada di belakang nav bar */
+            pointer-events: none;
+            /* Nonaktifkan interaksi dengan video */
+        }
+
+        /* About Us Section */
+        .about-us {
+            padding: 100px;
+            background-color: #958c8c;
+            text-align: left;
+            /* Atur teks menjadi rata kiri */
+        }
+
+        .about-us-container {
+            display: flex;
+            justify-content: space-between;
+            /* Beri ruang antara kolom */
+            align-items: center;
+            /* Sejajarkan item secara vertikal */
+        }
+
+        .about-us-content {
+            width: 500%;
+            /* Atur lebar kolom teks */
+        }
+
+        .about-us-image {
+            width: 45%;
+            /* Atur lebar kolom gambar */
+        }
+
+        /*portofolio*/
+        .portfolio {
+            padding: 100px;
+            background-color: #776d6d;
+            text-align: center;
+        }
+
+        .portfolio-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            background-color: #333;
+            font-family: 'Courier', monospace;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .tab-button.active {
+            background-color: #555;
+        }
+
+        .portfolio-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-content {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        .portfolio-item {
+            margin: 20px;
+            width: 300px;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .portfolio-video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .portfolio-item h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Services section styles */
+        .services {
+            padding: 50px;
+            background-color: #c0b9b9;
+            text-align: center;
+        }
+
+        .services-heading {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .services-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: #111;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .service-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .service-description {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Blog Section */
+        .blog {
+            padding: 50px;
+            background-color: #d0caca;
+            text-align: center;
+            color: #333;
+        }
+
+        .blog h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .blog-posts {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .blog-post {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+        }
+
+        .blog-post img {
+            width: 100%;
+            height: auto;
+        }
+
+        .blog-post-date {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .blog-post-content {
+            padding: 20px;
+        }
+
+        .blog-post-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .blog-post-content p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #5a5858;
+        }
+
+        .blog-post-content .meta {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* Enhanced Testimonials Section */
+        .testimonials {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #434f5c, #d0caca);
+            color: #fff;
+            text-align: center;
+        }
+
+        .testimonials-heading {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 50px;
+            color: #ecf0f1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .testimonials-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: #2f3437;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            max-width: 400px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card::before {
+            content: "\f10d";
+            font-family: "FontAwesome";
+            font-size: 80px;
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            color: rgba(103, 99, 99, 0.05);
+        }
+
+        .testimonial-description {
+            font-style: italic;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #bdc3c7;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #ecf0f1;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-author img:hover {
+            transform: scale(1.1);
+        }
+
+        .testimonial-author-info {
+            font-size: 16px;
+            color: #ecf0f1;
+        }
+
+        .author-name {
+            font-weight: bold;
+            display: block;
+        }
+
+        .author-position {
+            font-size: 14px;
+            color: #95a5a6;
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            padding: 50px;
+            background-color: #797878;
+            text-align: center;
+        }
+
+        .contact-form h2 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .form-group {
+            width: 300px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+        .form-button {
+            background-color: #f2f2f2;
+            color: #333;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: scale(1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-button:hover {
+            background-color: #e6e6e6;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            animation: glow 1s infinite;
+        }
+
+        .form-button:active {
+            background-color: #d6d6d6;
+            transform: scale(0.9);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            animation: pulse 1s infinite;
+        }
+
+        .form-button:active::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            animation: ripple 1s infinite;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #6a6666;
+            /* Changed to white */
+            color: #c2b5b5;
+            /* Changed text color to dark gray */
+        }
+
+        .footer-left {
+            flex-basis: 30%;
+        }
+
+        .footer-center {
+            flex-basis: 40%;
+        }
+
+        .footer-right {
+            flex-basis: 30%;
+            text-align: right;
+        }
+
+        .footer-center nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-center nav ul li {
+            margin-right: 20px;
+        }
+
+        .footer-center nav a {
+            color: #333;
+            /* Changed link color to dark gray */
+            text-decoration: none;
+        }
+
+        .footer-center nav a:hover {
+            color: #666;
+            /* Changed hover color to dark gray */
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            color: #333;
+            /* Changed link color to dark gray */
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #666;
+            /* Changed hover color to dark gray */
+        }
+
+        /* Typing Animation Styles */
+        .typing-text {
+            border-right: 2px solid #fff;
+            animation: typing 3s linear infinite;
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        /* Style for the back-to-top button */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 150px;
+            right: 30px;
+            background-color: #655b5b;
+            color: #9d9696;
+            padding: 15px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        #backToTop::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 15px solid white;
+            /* Atur warna panah */
+        }
+
+        #backToTop:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">voth.</div>
+        <nav>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#Komentar">Komentar</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </nav>
+    </header>
+
+    <div class="hero" id="hero">
+        <video class="hero-video" autoplay muted loop>
+            <source src="video/your-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1 class="hero-heading">Hello, I'm Rayhan Iqbal </h1>
+            <p class="hero-text">"Penting untuk mengetahui bahwa rasa sakit itu sendiri adalah hal yang penting, bahwa
+                sistem pendidikan akan diikuti,
+                tetapi pada saat seperti itu hal itu terjadi dengan susah payah dan kesakitan."</p>
+            <h3 class="hero-text">Anda harus menjadi <span class="typing-text"></span></h3>
+        </div>
+    </div>
+
+    <section class="about-us" id="about-us">
+        <div class="about-us-container">
+            <div class="about-us-content">
+                <h2>About Rayhan Iqbal.</h2>
+                <p>seorang yang tertarik dalam pengembangan animasi dan desain. Dalam bidang ini, ia mengeksplorasi
+                    bagaimana visual dan animasi dapat digunakan untuk menciptakan pengalaman interaktif yang menarik
+                    dan dinamis. Dengan fokus pada detail dan estetika.</p>
+
+                <p>Menggabungkan keterampilan teknis dengan kreativitas untuk menghasilkan karya animasi yang tidak
+                    hanya fungsional, tetapi juga memukau secara visual.</p>
+            </div>
+            <div class="about-us-image">
+                <img src="All images/about.jpg" alt="About Us Image">
+            </div>
+        </div>
+    </section>
+    <section class="portfolio" id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="portfolio-container">
+            <div class="portfolio-tabs">
+                <button class="tab-button active" data-tab="all">All</button>
+                <button class="tab-button" data-tab="web-development">Web Development</button>
+                <button class="tab-button" data-tab="animasi">Animasi</button>
+                <button class="tab-button" data-tab="design">Design</button>
+            </div>
+            <div class="portfolio-content">
+                <div class="tab-content active" data-tab="all">
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio1.webp" alt="Portfolio 1" class="">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio2.jpg" alt="Portfolio 2">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio3.jpg" alt="Portfolio 3">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio13.jpg" alt="Portfolio 13">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio14.jpg" alt="Portfolio 14">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio15.jpg" alt="Portfolio 15">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio16.jpg" alt="Portfolio 16">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio17.jpg" alt="Portfolio 17">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio18.jpg" alt="Portfolio 18">
+                    </div>
+                </div>
+                <div class="tab-content" data-tab="web-development">
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio4.jpg" alt="Portfolio 4">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio5.jpg" alt="Portfolio 5">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio6.jpg" alt="Portfolio 6">
+                    </div>
+                </div>
+                    <div class="tab-content" data-tab="design">
+                        <div class="portfolio-item">
+                            <img src="All images/portfolio10.jpg" alt="Portfolio 10">
+                        </div>
+                        <div class="portfolio-item">
+                            <img src="All images/portfolio11.jpg" alt="Portfolio 11">
+                        </div>
+                        <div class="portfolio-item">
+                            <img src="All images/portfolio12.jpg" alt="Portfolio 12">
+                        </div>
+                    </div>
+                    <div class="tab-content" data-tab="animasi">
+                        <div class="portfolio-item">
+                            <img src="All images/portfolio7.webp" alt="Portfolio 7" class=".animated-webp">
+                        </div>
+                        <div class="portfolio-item">
+                            <img src="All images/portfolio8.jpg" alt="Portfolio 8">
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="portfolio-video">
+                                <video id="portfolio-9" width="100%" height="auto" controls>
+                                    <source src="video/portfolio9.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+    </section>
+    <section class="services" id="services">
+        <h2 class="services-heading">Our Services</h2>
+        <div class="services-container">
+            <div class="service-card">
+                <i class="service-icon fas fa-code"></i>
+                <h3 class="service-title">Web Development</h3>
+                <p class="service-description">Menyediakan layanan pengembangan web yang profesional dan responsif,
+                    memastikan situs menjadi berfungsi dengan optimal di berbagai perangkat dan browser.</p>
+            </div>
+            <div class="service-card">
+                <i class="service-icon fas fa-palette"></i>
+                <h3 class="service-title">Animator</h3>
+                <p class="service-description">Menciptakan animasi kreatif dan menarik yang dapat meningkatkan daya
+                    tarik visual konten Anda, baik untuk media digital maupun presentasi.</p>
+            </div>
+            <div class="service-card">
+                <i class="service-icon fas fa-paint-brush"></i>
+                <h3 class="service-title">UI/UX Design</h3>
+                <p class="service-description">Fokus pada pengalaman pengguna yang optimal melalui desain antarmuka yang
+                    intuitif dan fungsional untuk meningkatkan interaksi pengguna dengan produk digital.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <h2>Latest Blogs</h2>
+        <div class="blog-posts">
+            <div class="blog-post">
+                <img src="Blog_image/blog-01.jpg" alt="Blog 1">
+                <div class="blog-post-content">
+                    <h3>Setiap penulis kadang terjebak dalam racun pemikiran. </h3>
+                    <p class="meta">January 1, 2024 | 5 mins read</p>
+                    <p>Artikel ini membahas tren terbaru dalam pengembangan web, memberikan wawasan tentang teknologi
+                        terbaru dan praktik terbaik.</p>
+                </div>
+            </div>
+            <div class="blog-post">
+                <img src="Blog_image/blog-02.jpg" alt="Blog 2">
+                <div class="blog-post-content">
+                    <h3>Seringkali, penulis dilanda racun keraguan.<h3>
+                            <p class="meta">February 15, 2024 | 6 mins read</p>
+                            <p>Pelajari lebih lanjut tentang pentingnya animasi dalam memperkuat branding visual dan
+                                pengalaman
+                                pengguna yang lebih menarik.</p>
+                </div>
+            </div>
+            <div class="blog-post">
+                <img src="Blog_image/blog-03.jpg" alt="Blog 3">
+                <div class="blog-post-content">
+                    <h3>Terkadang, penulis terperangkap dalam racun kebingungan.</h3>
+                    <p class="meta">March 30, 2024 | 7 mins read</p>
+                    <p>Desain UI/UX yang efektif bisa menjadi kunci dalam meningkatkan loyalitas pengguna dan konversi
+                        dalam produk digital.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="Komentar">
+        <h2 class="testimonials-heading">komentar</h2>
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p class="testimonial-description">"Sangatlah penting bagi pelanggan untuk berkomitmen mengikuti
+                        proses pembinaan, namun terkadang hal tersebut dilakukan dengan tantangan besar dan penuh
+                        perjuangan."</p>
+                    <div class="testimonial-author">
+                        <img src="All images/Neco-Arc_Remake.webp" alt="Author 1">
+                        <div class="testimonial-author-info">
+                            <span class="author-name">Neco ARC</span>
+                            <span class="author-position">CEO, Company A</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p class="testimonial-description">"Mengikuti proses pembinaan adalah hal yang krusial bagi
+                        pelanggan, meskipun seringkali itu dilakukan dengan banyak kesulitan dan usaha yang tidak
+                        mudah."</p>
+                    <div class="testimonial-author">
+                        <img src="All images/Anton.webp" alt="Author 2">
+                        <div class="testimonial-author-info">
+                            <span class="author-name">Mr.Anton</span>
+                            <span class="author-position">Founder, Company B</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p class="testimonial-description">"Pelanggan harus dengan tekun menjalani proses pembinaan, namun
+                        ada saat-saat di mana proses tersebut terasa sangat berat dan penuh dengan rintangan."</p>
+                    <div class="testimonial-author">
+                        <img src="All images/king.jpg" alt="Author 3">
+                        <div class="testimonial-author-info">
+                            <span class="author-name">Raja Kikir</span>
+                            <span class="author-position">CTO, Company C</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-form" id="contact">
+        <h2>Contact Us</h2>
+        <div class="form-container">
+            <form action="contact-form" method="post">
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="form-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <p>&copy; 2024 Hak Cipta. All rights reserved.</p>
+            </div>
+            <div class="footer-center">
+                <nav>
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about-us">About Us</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#Komentar">Komentar</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-right">
+                <div class="social-links">
+                    <a href="https://www.instagram.com/deadmoon134/" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="Js/typing_text.js"></script>
+    <script src="Js/tab_portfolio.js"></script>
+    <script src="Js/anime.min.js"></script>
+    <script src="email.js"></script>
+    <script src="Js/back-to-top.js"></script>
+    <script src="Js/video9.js"></script>
+
+</body>
+
+</html>
