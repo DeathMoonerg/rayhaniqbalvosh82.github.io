@@ -19,7 +19,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
             background-color: #222;
             /* tambahkan properti ini */
             position: sticky;
@@ -186,7 +186,7 @@
         }
 
         .about-us-image {
-            width: 45%;
+            width: 100%;
             /* Atur lebar kolom gambar */
         }
 
@@ -595,64 +595,99 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px;
-            background-color: #6a6666;
-            /* Changed to white */
-            color: #c2b5b5;
-            /* Changed text color to dark gray */
+            background-color: #373535;
+            color: #c8bdbd;
         }
 
-        .footer-left {
-            flex-basis: 30%;
-        }
-
-        .footer-center {
-            flex-basis: 40%;
-        }
-
+        .footer-left,
+        .footer-center,
         .footer-right {
-            flex-basis: 30%;
-            text-align: right;
+            flex: 1;
+            text-align: center;
         }
 
-        .footer-center nav ul {
+        .footer-center ul {
             list-style: none;
-            margin: 0;
             padding: 0;
+            margin: 0;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .footer-center nav ul li {
-            margin-right: 20px;
+        .footer-center ul li {
+            margin: 0 10px;
+        }
+
+        .footer-center ul li a {
+            color: #b0a4a4;
+            text-decoration: none;
+            font-size: 14px;
         }
 
         .footer-center nav a {
             color: #333;
-            /* Changed link color to dark gray */
-            text-decoration: none;
         }
 
         .footer-center nav a:hover {
             color: #666;
-            /* Changed hover color to dark gray */
         }
 
-        .social-links {
-            margin-top: 10px;
+        .footer-right .social-links a {
+            color: #a59f9f;
+            font-size: 24px;
+            margin-left: 10px;
         }
 
-        .social-links a {
-            margin: 0 10px;
-            color: #333;
-            /* Changed link color to dark gray */
-            font-size: 20px;
-            transition: color 0.3s ease;
+        .footer-right .social-links a:hover {
+            color: #353030;
         }
 
-        .social-links a:hover {
-            color: #666;
-            /* Changed hover color to dark gray */
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-left,
+            .footer-center,
+            .footer-right {
+                margin-bottom: 15px;
+            }
+
+            .footer-center ul {
+                flex-direction: column;
+            }
+
+            .footer-center ul li {
+                margin-bottom: 10px;
+            }
+
+            .footer-right .social-links a {
+                font-size: 20px;
+            }
         }
+
+        /* Extra Small Screens (Mobile Phones) */
+        @media (max-width: 480px) {
+            .footer-container {
+                padding: 10px;
+            }
+
+            .footer-left p {
+                font-size: 12px;
+            }
+
+            .footer-center ul li a {
+                font-size: 12px;
+            }
+
+            .footer-right .social-links a {
+                font-size: 18px;
+            }
+        }
+
 
         /* Typing Animation Styles */
         .typing-text {
@@ -669,6 +704,212 @@
                 width: 100%;
             }
         }
+
+        /* Gaya umum untuk header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        /* Gaya umum untuk navigasi */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Menu toggle untuk layar kecil */
+        .menu-toggle {
+            display: none;
+            /* Sembunyikan tombol di layar besar */
+        }
+
+        /* Gaya umum untuk gambar dan video agar responsif */
+        img,
+        video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Kontainer umum untuk gambar dan video */
+        .about-us-container {
+            display: flex;
+            flex-direction: row;
+            /* Ubah menjadi kolom untuk perangkat kecil */
+            align-items: flex-start;
+            /* Pusatkan konten secara horizontal */
+
+            gap: 20px;
+            /* Jarak antara elemen */
+            padding: 20px;
+            /* Tambahkan padding untuk ruang */
+        }
+
+        /* Gaya untuk konten tentang kami */
+        .about-us-content {
+            max-width: 600px;
+            /* Batasi lebar konten agar tidak terlalu lebar */
+            padding: 0 20px;
+            /* Tambahkan padding horizontal */
+        }
+
+        /* Gaya untuk gambar */
+        .about-us-image img {
+            max-width: 100%;
+            /* Pastikan gambar responsif */
+            height: auto;
+            /* Pertahankan rasio aspek */
+        }
+
+        /* Teks Desktop */
+        .desktop-text {
+            flex: 1;
+            /* Teks mengambil ruang yang tersisa */
+            text-align: left;
+            /* Teks di sebelah kiri */
+        }
+
+        /* Gaya untuk gambar */
+        .about-us-image {
+            flex: 1;
+            /* Gambar mengambil ruang yang tersisa */
+            display: flex;
+            /* Menjaga gambar di tengah dalam div */
+            justify-content: flex-end;
+            /* Memindahkan gambar ke kanan */
+            align-items: flex-start;
+            /* Memastikan gambar berada di bagian atas */
+        }
+
+        /* Gaya untuk gambar */
+        .about-us-image img {
+            max-width: 100%;
+            /* Pastikan gambar responsif */
+            height: auto;
+            /* Pertahankan rasio aspek */
+        }
+
+        .mobile-text {
+            display: none;
+            /* Sembunyikan teks untuk mobile */
+        }
+
+
+        /* Responsif: Untuk layar dengan lebar maksimal 768px (tablet dan ponsel) */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: row;
+                /* Atur menjadi row agar item tetap sejajar secara horizontal */
+                justify-content: space-between;
+                /* Logo di kiri, toggle menu di kanan */
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: block;
+                /* Tampilkan tombol di layar kecil */
+                background-color: #333;
+                color: white;
+                padding: 10px;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+                margin-left: auto;
+                /* Pastikan tombol berada di sisi kanan */
+            }
+
+            nav {
+                display: none;
+                /* Sembunyikan menu awalnya */
+                width: 100%;
+                background-color: #444;
+            }
+
+            nav.show {
+                display: block;
+                /* Tampilkan menu saat toggle di klik */
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            nav ul li a {
+                padding: 10px;
+                display: block;
+                text-align: left;
+                width: 100%;
+                background-color: #444;
+            }
+
+            nav ul li a:hover {
+                background-color: #555;
+            }
+
+            .desktop-text {
+                display: none;
+                /* Sembunyikan teks desktop di perangkat kecil */
+            }
+
+            .mobile-text {
+                display: block;
+                /* Tampilkan teks mobile di perangkat kecil */
+            }
+
+
+            .about-us-container {
+                flex-direction: column;
+                /* Ubah menjadi kolom */
+                align-items: center;
+                /* Tengah-tengah secara horizontal */
+            }
+
+            .about-us-content {
+                max-width: 90%;
+                /* Mengubah batas lebar konten untuk perangkat lebih kecil */
+            }
+        }
+
+        /* Gaya untuk gambar */
+        .about-us-image img {
+            max-width: 100%;
+            /* Pastikan gambar responsif */
+            height: auto;
+            /* Pertahankan rasio aspek */
+        }
+
+        /* Responsif: Untuk layar yang lebih kecil dari 480px (ponsel kecil) */
+        @media (max-width: 480px) {
+            nav ul li a {
+                font-size: 16px;
+            }
+
+            .about-us-content {
+                font-size: 14px;
+                /* Kecilkan ukuran font untuk perangkat kecil */
+            }
+        }
+
+
 
         /* Style for the back-to-top button */
         #backToTop {
@@ -706,15 +947,17 @@
 
 <body>
     <header>
-        <div class="logo">Deth.</div>
+        <div class="logo">DETH.</div>
+        <button class="menu-toggle">Menu</button>
         <nav>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about-us">About Us</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#Komentar">Komentar</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -736,18 +979,25 @@
         <div class="about-us-container">
             <div class="about-us-content">
                 <h2>About Rayhan Iqbal.</h2>
-                <p>seorang yang tertarik dalam pengembangan animasi dan desain. Dalam bidang ini, ia mengeksplorasi
+                <p class="desktop-text">Seorang yang tertarik dalam pengembangan animasi dan desain. Dalam bidang ini,
+                    ia mengeksplorasi
                     bagaimana visual dan animasi dapat digunakan untuk menciptakan pengalaman interaktif yang menarik
                     dan dinamis. Dengan fokus pada detail dan estetika.</p>
-
-                <p>Menggabungkan keterampilan teknis dengan kreativitas untuk menghasilkan karya animasi yang tidak
+                <p class="desktop-text">Menggabungkan keterampilan teknis dengan kreativitas untuk menghasilkan karya
+                    animasi yang tidak
                     hanya fungsional, tetapi juga memukau secara visual.</p>
+                <p class="mobile-text">Seorang yang tertarik dalam pengembangan animasi dan desain. Dalam bidang ini, ia
+                    mengeksplorasi
+                    visual dan animasi untuk menciptakan pengalaman interaktif yang menarik.</p>
+                <p class="mobile-text">Menggabungkan keterampilan teknis dan kreativitas untuk menghasilkan karya
+                    animasi yang memukau.</p>
             </div>
             <div class="about-us-image">
                 <img src="All images/about.jpg" alt="About Us Image">
             </div>
         </div>
     </section>
+
     <section class="portfolio" id="portfolio">
         <h2>Portfolio</h2>
         <div class="portfolio-container">
@@ -798,33 +1048,33 @@
                         <img src="All images/portfolio6.jpg" alt="Portfolio 6">
                     </div>
                 </div>
-                    <div class="tab-content" data-tab="design">
-                        <div class="portfolio-item">
-                            <img src="All images/portfolio10.jpg" alt="Portfolio 10">
-                        </div>
-                        <div class="portfolio-item">
-                            <img src="All images/portfolio11.jpg" alt="Portfolio 11">
-                        </div>
-                        <div class="portfolio-item">
-                            <img src="All images/portfolio12.jpg" alt="Portfolio 12">
+                <div class="tab-content" data-tab="design">
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio10.jpg" alt="Portfolio 10">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio11.jpg" alt="Portfolio 11">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio12.jpg" alt="Portfolio 12">
+                    </div>
+                </div>
+                <div class="tab-content" data-tab="animasi">
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio7.webp" alt="Portfolio 7" class=".animated-webp">
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="All images/portfolio8.jpg" alt="Portfolio 8">
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-video">
+                            <video id="portfolio-9" width="100%" height="auto" controls>
+                                <source src="video/portfolio9.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                     </div>
-                    <div class="tab-content" data-tab="animasi">
-                        <div class="portfolio-item">
-                            <img src="All images/portfolio7.webp" alt="Portfolio 7" class=".animated-webp">
-                        </div>
-                        <div class="portfolio-item">
-                            <img src="All images/portfolio8.jpg" alt="Portfolio 8">
-                        </div>
-                        <div class="portfolio-item">
-                            <div class="portfolio-video">
-                                <video id="portfolio-9" width="100%" height="auto" controls>
-                                    <source src="video/portfolio9.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                        </div>
-                    
+
                 </div>
             </div>
     </section>
@@ -985,11 +1235,13 @@
     <!-- Back to Top Button -->
     <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
+    <script src="Js/Nav.js"></script>
     <script src="Js/typing_text.js"></script>
     <script src="Js/tab_portfolio.js"></script>
     <script src="Js/anime.min.js"></script>
     <script src="Js/back-to-top.js"></script>
     <script src="Js/video9.js"></script>
+
 
 </body>
 
